@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="{{ page_description | default: 'Leah Morgenstern Fine Jewelry — diamonds, fancy colored diamonds, and gemstones, set in gold and platinum.' }}">
+  <title>{{ page_title }} · Leah Morgenstern Fine Jewelry</title>
+
+  {{ content_for_header }}
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  {{ 'main.css' | asset_url | stylesheet_tag }}
+</head>
+<body>
+
+  {% section 'header' %}
+
+  <div class="mobile-menu" aria-hidden="true">
+    <a href="{{ routes.root_url }}">Home</a>
+    <a href="{{ routes.collections_url }}/all">Shop</a>
+    <a href="{{ pages['about'].url }}">About</a>
+    <a href="{{ pages['custom'].url }}">Custom</a>
+    <a href="{{ routes.contact_url }}">Contact</a>
+  </div>
+
+  <main>
+    {{ content_for_layout }}
+  </main>
+
+  {% section 'footer' %}
+  {% section 'cart-drawer' %}
+
+  {{ 'main.js' | asset_url | script_tag }}
+
+</body>
+</html>
