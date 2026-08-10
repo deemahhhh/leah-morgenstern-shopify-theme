@@ -1,0 +1,212 @@
+<!-- HERO — full bleed -->
+<section class="hero-fullbleed">
+  <img src="https://drive.google.com/thumbnail?id=1p2SLboVwJ4Z08v7flqK3D0XLjteseINd&sz=w1600" alt="Leah Morgenstern Fine Jewelry">
+  <div class="hero-fullbleed-overlay"></div>
+  <div class="hero-fullbleed-text">
+    <h1>Fine jewelry<br>for the body<br>and the <em>moment.</em></h1>
+    <div class="hero-fullbleed-actions">
+      <a href="{{ routes.collections_url }}/all" class="btn btn-frame">Explore the Collection</a>
+      <a href="{{ pages['about'].url }}" class="btn-link">Our Story →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED COLLECTION -->
+<section class="featured-section">
+  <div class="featured-header reveal">
+    <h2 style="font-family:var(--sans);font-size:11px;font-weight:500;color:var(--ink-muted);letter-spacing:0.14em;text-transform:uppercase;margin:0;">The Collection</h2>
+    <a href="{{ routes.collections_url }}/all" class="btn-link">View all →</a>
+  </div>
+  <div class="product-grid-4 reveal-stagger">
+    {% assign featured_handles = 'classic-bangle,tennis-bracelet,silk-rope-necklace,featherlight-ovals' | split: ',' %}
+    {% for handle in featured_handles %}
+      {% assign featured_product = all_products[handle] %}
+      {% if featured_product %}
+        {% render 'product-card', product: featured_product %}
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="categories-section">
+  <div class="wrap">
+    <span class="categories-label reveal">Shop by category</span>
+    <div class="categories reveal-stagger">
+      <a href="{{ routes.collections_url }}/necklaces" class="category-card">
+        <img src="https://drive.google.com/thumbnail?id=13pEkOMFD0JZINchpdn1g2OuGDa9xJqCC&sz=w900" alt="Necklaces">
+        <span class="label"><span class="name">Necklaces</span><span class="arrow">→</span></span>
+      </a>
+      <a href="{{ routes.collections_url }}/bracelets" class="category-card">
+        <img src="https://drive.google.com/thumbnail?id=1co6te5_WSbfddLVWzxs4hjGkxGz8yLWm&sz=w900" alt="Bracelets">
+        <span class="label"><span class="name">Bracelets</span><span class="arrow">→</span></span>
+      </a>
+      <a href="{{ routes.collections_url }}/earrings" class="category-card">
+        <img src="https://drive.google.com/thumbnail?id=1jjcvEzsC6ONGVSGRc-1oMU0J6dTJZ1e3&sz=w900" alt="Earrings">
+        <span class="label"><span class="name">Earrings</span><span class="arrow">→</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- MEDIA GALLERY -->
+<section class="media-gallery">
+  <div class="media-gallery-header reveal">
+    <span class="eyebrow">Leah's jewelry in action</span>
+  </div>
+  <div class="media-gallery-grid">
+    <div class="media-gallery-item">
+      <img src="https://drive.google.com/thumbnail?id=1qAuegnb_QSiwURp4f_7e5s5M1Wqb-ss8&sz=w1200" alt="Leah Morgenstern jewelry lifestyle">
+    </div>
+    <div class="media-gallery-item media-gallery-video">
+      <video src="{{ 'lifestyle.mov' | asset_url }}" autoplay muted loop playsinline></video>
+      <button class="play-btn" aria-label="Play / Pause">
+        <svg class="icon-play" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>
+        <svg class="icon-pause" viewBox="0 0 24 24" fill="white" style="display:none"><rect x="5" y="3" width="4" height="18"/><rect x="15" y="3" width="4" height="18"/></svg>
+      </button>
+    </div>
+    <div class="media-gallery-item media-gallery-video">
+      <video src="{{ 'hero-hands.mp4' | asset_url }}" autoplay muted loop playsinline></video>
+      <button class="play-btn" aria-label="Play / Pause">
+        <svg class="icon-play" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>
+        <svg class="icon-pause" viewBox="0 0 24 24" fill="white" style="display:none"><rect x="5" y="3" width="4" height="18"/><rect x="15" y="3" width="4" height="18"/></svg>
+      </button>
+    </div>
+    <div class="media-gallery-item">
+      <img src="https://drive.google.com/thumbnail?id=1WN2RUIO3Gff68PkOQZLWgLenZbtbAqu9&sz=w900" alt="Leah Morgenstern jewelry lifestyle">
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="testimonial">
+  <div class="testimonial-inner reveal">
+    <div class="quote-mark">"</div>
+    <blockquote>Leah was the MVP of our entire engagement ring process.</blockquote>
+    <div class="attribution">— W.G., Engagement Ring Client</div>
+    <a href="{{ pages['about'].url }}#reviews" class="btn-link">Read more reflections</a>
+  </div>
+</section>
+
+<!-- CALLOUT — Custom -->
+<div class="callout-section">
+  <div class="callout-image">
+    <img src="https://drive.google.com/thumbnail?id=1Uj35QvJ9VJDurgSJWAxSDrUWaC2RMnkV&sz=w900" alt="Custom commission">
+  </div>
+  <div class="callout-content">
+    <span class="eyebrow">Made only for you</span>
+    <p class="callout-h2">Custom and personalized<br>creations are at the<br>heart of my <em>work.</em></p>
+    <a href="{{ pages['custom'].url }}" class="btn btn-frame">Explore Custom</a>
+  </div>
+</div>
+
+{% section 'newsletter' %}
+
+<style>
+  .hero-fullbleed {
+    position: relative; width: 100%; height: 87vh; min-height: 420px;
+    overflow: hidden; display: flex; align-items: flex-end;
+  }
+  .hero-fullbleed img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .hero-fullbleed-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.52) 0%, rgba(0,0,0,0.1) 50%, transparent 100%);
+  }
+  .hero-fullbleed-text {
+    position: relative; z-index: 2; width: 100%;
+    padding: 0 var(--gutter) var(--s-12);
+    display: flex; align-items: flex-end; justify-content: space-between; gap: var(--s-8);
+  }
+  .hero-fullbleed-text h1 {
+    font-family: var(--serif); font-size: clamp(32px, 4.5vw, 64px);
+    font-weight: 300; color: #fff; line-height: 1.0; letter-spacing: -0.02em; margin: 0;
+  }
+  .hero-fullbleed-text h1 em { font-style: italic; }
+  .hero-fullbleed-actions { display: flex; flex-direction: column; align-items: flex-end; gap: var(--s-4); padding-bottom: 4px; }
+  .hero-fullbleed-actions .btn-frame { border-color: rgba(255,255,255,0.8); color: #fff; background: transparent; }
+  .hero-fullbleed-actions .btn-frame:hover { background: #fff; color: var(--ink); }
+  .hero-fullbleed-actions .btn-link { color: rgba(255,255,255,0.7); }
+  .hero-fullbleed-actions .btn-link:hover { color: #fff; }
+
+  .featured-section { padding: var(--s-6) 0 var(--s-4); }
+  .featured-header {
+    display: flex; align-items: baseline; justify-content: space-between;
+    margin-bottom: var(--s-4); padding: 0 var(--gutter);
+    max-width: var(--max-w); margin-left: auto; margin-right: auto;
+  }
+  .product-grid-4 {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1px; background: var(--sand); max-width: var(--max-w); margin: 0 auto;
+  }
+  .product-grid-4 .product-card { background: var(--cream); }
+  @media (max-width: 900px) { .product-grid-4 { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 480px) { .product-grid-4 { grid-template-columns: 1fr; } }
+
+  .categories-section { padding: var(--s-6) 0; }
+  .categories-label { font-family: var(--sans); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: var(--s-3); display: block; }
+
+  .media-gallery { background: var(--cream); padding: var(--s-6) 0 0; }
+  .media-gallery-header { max-width: var(--max-w); margin: 0 auto var(--s-4); padding: 0 var(--gutter); }
+  .media-gallery-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1px; background: var(--sand); max-width: var(--max-w); margin: 0 auto;
+  }
+  .media-gallery-item { overflow: hidden; aspect-ratio: 3/4; background: var(--cream); position: relative; }
+  .media-gallery-item img, .media-gallery-item video {
+    width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.45s ease;
+  }
+  .media-gallery-item:hover img, .media-gallery-item:hover video { transform: scale(1.03); }
+  .play-btn {
+    position: absolute; bottom: var(--s-4); right: var(--s-4);
+    width: 40px; height: 40px; border-radius: 50%;
+    background: rgba(0,0,0,0.45); border: 1.5px solid rgba(255,255,255,0.6);
+    display: flex; align-items: center; justify-content: center; cursor: pointer;
+    backdrop-filter: blur(4px); transition: background 0.2s ease, transform 0.2s ease; z-index: 2;
+  }
+  .play-btn:hover { background: rgba(0,0,0,0.65); transform: scale(1.1); }
+  .play-btn svg { width: 14px; height: 14px; }
+
+  .callout-section { display: grid; grid-template-columns: 1fr 1fr; }
+  .callout-image { overflow: hidden; }
+  .callout-image img { width: 100%; height: auto; display: block; max-width: 600px; }
+  .callout-content {
+    background: var(--ink); display: flex; flex-direction: column;
+    justify-content: center; padding: var(--s-5) var(--s-6);
+  }
+  .callout-content .eyebrow { color: var(--bronze); margin-bottom: var(--s-3); display: block; }
+  .callout-content .callout-h2 {
+    font-family: var(--serif); font-size: clamp(16px, 1.6vw, 24px); font-weight: 300;
+    line-height: 1.25; color: #f5f0e8; margin-bottom: var(--s-4);
+  }
+  .callout-content .callout-h2 em { font-style: italic; }
+  .callout-content .btn-frame { align-self: flex-start; border-color: rgba(245,240,232,0.6); color: #f5f0e8; font-size: 10px; padding: 8px 16px; }
+  .callout-content .btn-frame:hover { background: #f5f0e8; color: var(--ink); }
+
+  @media (max-width: 768px) {
+    .hero-fullbleed-text { flex-direction: column; align-items: flex-start; }
+    .hero-fullbleed-actions { align-items: flex-start; }
+    .callout-section { grid-template-columns: 1fr; }
+    .media-gallery-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 480px) {
+    .media-gallery-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script>
+  document.querySelectorAll('.media-gallery-video').forEach(item => {
+    const video = item.querySelector('video');
+    const btn = item.querySelector('.play-btn');
+    const iconPlay = btn.querySelector('.icon-play');
+    const iconPause = btn.querySelector('.icon-pause');
+    iconPlay.style.display = 'none';
+    iconPause.style.display = '';
+    btn.addEventListener('click', () => {
+      if (video.paused) {
+        video.play(); iconPlay.style.display = 'none'; iconPause.style.display = '';
+      } else {
+        video.pause(); iconPlay.style.display = ''; iconPause.style.display = 'none';
+      }
+    });
+  });
+</script>

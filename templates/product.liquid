@@ -1,0 +1,106 @@
+{% assign is_inquire = false %}
+{% assign is_soldout = false %}
+{% assign rotate180 = false %}
+{% assign price_from = false %}
+{% assign made_in = '' %}
+
+{% for tag in product.tags %}
+  {% if tag == 'inquire-only' %}{% assign is_inquire = true %}{% endif %}
+  {% if tag == 'sold-out' %}{% assign is_soldout = true %}{% endif %}
+  {% if tag == 'rotate-180' %}{% assign rotate180 = true %}{% endif %}
+  {% if tag == 'price-from' %}{% assign price_from = true %}{% endif %}
+  {% if tag == 'made-in-italy' %}{% assign made_in = 'Italy' %}{% endif %}
+  {% if tag == 'made-in-nyc' %}{% assign made_in = 'New York City' %}{% endif %}
+{% endfor %}
+
+{% if is_soldout %}
+  {% assign cta_html = '<button class="btn btn-frame" disabled style="opacity:0.5;cursor:default;">Sold Out</button>' %}
+{% elsif is_inquire %}
+  {% assign cta_html = '<a href="/pages/contact?inquire=' | append: product.handle | append: '" class="btn btn-frame">Inquire about this piece</a>' %}
+{% else %}
+  {% assign variant = product.selected_or_first_available_variant %}
+  {% assign cta_html = '<button class="btn btn-frame" data-add-to-cart="' | append: variant.id | append: '">Add to cart — ' | append: product.price | money | append: '</button>' %}
+{% endif %}
+
+<main class="pdp">
+  <div class="wrap">
+    <div class="pdp-grid">
+
+      <!-- GALLERY -->
+      <div class="pdp-gallery">
+        {% for image in product.images %}
+          <div class="shot">
+            <img src="{{ image | image_url: width: 900 }}" alt="{{ product.title }}"
+              {% if rotate180 and forloop.index <= 2 %}style="transform:rotate(180deg)"{% endif %}>
+          </div>
+        {% endfor %}
+      </div>
+
+      <!-- INFO -->
+      <aside class="pdp-info">
+        <div class="breadcrumb">
+          <a href="{{ routes.collections_url }}/all">Shop</a> ·
+          <a href="{{ routes.collections_url }}/{{ product.type | handleize }}">{{ product.type }}</a>
+        </div>
+        <h1 class="name">{{ product.title }}</h1>
+        <div class="price">
+          {% if is_inquire %}Inquire
+          {% elsif is_soldout %}Sold Out
+          {% elsif price_from %}From {{ product.price | money }}
+          {% else %}{{ product.price | money }}
+          {% endif %}
+        </div>
+        <p class="description">{{ product.description }}</p>
+
+        <div class="materials">
+          {% if product.metafields.custom.materials %}
+            <div>
+              <div class="label">Material</div>
+              <div class="value">{{ product.metafields.custom.materials }}</div>
+            </div>
+          {% endif %}
+          {% if made_in != '' %}
+            <div>
+              <div class="label">Made in</div>
+              <div class="value">{{ made_in }}</div>
+            </div>
+          {% endif %}
+        </div>
+
+        <div class="pdp-actions">
+          {% if is_inquire %}
+            <p style="font-family:var(--sans);font-size:13px;line-height:1.7;color:var(--ink-muted);margin-bottom:var(--s-4);">Whether it's a ring, a pair of studs, or a tennis bracelet, we'll work together to source the right diamonds for your piece — guided by the 4Cs (cut, color, clarity, carat) — to find what meets your requirements.</p>
+            <a href="/pages/contact?inquire={{ product.handle }}" class="btn btn-frame">Inquire about this piece</a>
+          {% elsif is_soldout %}
+            <button class="btn btn-frame" disabled style="opacity:0.5;cursor:default;">Sold Out</button>
+          {% else %}
+            {% form 'product', product %}
+              <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+              <button type="submit" class="btn btn-frame" data-add-to-cart="{{ product.selected_or_first_available_variant.id }}">
+                Add to cart — {{ product.price | money }}
+              </button>
+            {% endform %}
+          {% endif %}
+          <a href="/pages/contact?ask={{ product.handle }}" class="btn-link" style="text-align:center;padding-top:8px;">Ask a question about this piece</a>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</main>
+
+<!-- RELATED -->
+<section class="pdp-related">
+  <div class="wrap">
+    <h3 class="h3">You might also like</h3>
+    <div class="product-grid">
+      {% assign related_count = 0 %}
+      {% for p in collections[product.type | handleize].products %}
+        {% if p.handle != product.handle and related_count < 3 %}
+          {% render 'product-card', product: p %}
+          {% assign related_count = related_count | plus: 1 %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>

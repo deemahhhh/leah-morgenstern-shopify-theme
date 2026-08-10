@@ -1,0 +1,98 @@
+<!-- ABOUT HERO -->
+<section class="about-hero">
+  <div class="about-hero-inner reveal">
+    <span class="eyebrow">A note from Leah</span>
+    <h1 class="h1">Jewelry as <span class="italic">art,</span><br>and as sacred <span class="italic">adornment.</span></h1>
+  </div>
+</section>
+
+<!-- PORTRAIT + NARRATIVE -->
+<section class="about-split">
+  <div class="about-split-image reveal">
+    <img src="{{ 'leah-morgenstern-about-me-pic.webp' | asset_url }}" alt="Leah Morgenstern Fine Jewelry">
+  </div>
+  <div class="about-split-text reveal">
+    <p>
+      I'm <strong>Leah Morgenstern</strong>, a jewelry designer and artist. I create fine jewelry with diamonds, fancy colored diamonds, and gemstones chosen for their unique beauty and energy, set in gold and platinum.
+    </p>
+    <p>
+      My work is shaped by my time immersed in ancient cultures—North Africa, the Middle East, Bali, and Greece—and by the creative spirit of San Francisco and New York, where I have lived. Stones, metals, and forms carry layered stories; I am drawn to their timeless essence. Nature remains my greatest source of inspiration.
+    </p>
+    <p>
+      I collaborate with trusted gemologists and skilled artisans to ensure each stone and piece meets the highest standards of quality and authenticity. Over the years, I've worked with hundreds of clients, building relationships of trust around pieces they cherish. You can read a few of their reflections <a href="#reviews" style="color:var(--bronze);text-decoration:underline;text-underline-offset:4px;">here</a>.
+    </p>
+    <p class="lift">
+      Jewelry, to me, is both art and sacred adornment—a natural extension of my work in the healing arts. Each piece carries beauty and intention, and resonates with the deeper energies we wish to cultivate in life.
+    </p>
+    <p>
+      If you'd like to explore a piece together, please email me at <a href="mailto:hi@leahmorgenstern.com" style="color:var(--bronze);text-decoration:underline;text-underline-offset:4px;">hi@leahmorgenstern.com</a>.
+    </p>
+    <div class="about-credentials" style="margin-top:var(--s-7);">
+      <span class="item">GIA Certified Jewelry Designer</span>
+      <span class="item">Ethical Sourcing</span>
+      <span class="item">Conflict-Free Stones</span>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+  <div class="reviews-inner">
+    <div class="reviews-head reveal">
+      <span class="eyebrow">Client reflections</span>
+      <h2 class="h2">What they say</h2>
+    </div>
+    <div class="reviews-grid reveal-stagger">
+      <div class="review-card">
+        <blockquote>"Leah was the MVP of our entire engagement ring process. She was incredibly knowledgeable, patient, and made the whole experience joyful. We couldn't be happier."</blockquote>
+        <div class="attribution">— W.G., Engagement Ring Client</div>
+      </div>
+      <div class="review-card">
+        <blockquote>"Leah's taste is impeccable and her knowledge of stones is extraordinary. She found us a diamond that exceeded every expectation — within budget, and more beautiful than we could have imagined."</blockquote>
+        <div class="attribution">— S.K., Diamond Sourcing Client</div>
+      </div>
+      <div class="review-card">
+        <blockquote>"Working with Leah felt like working with a close friend who happens to be an expert. She understood exactly what I wanted and delivered something even better."</blockquote>
+        <div class="attribution">— A.R., Custom Commission Client</div>
+      </div>
+      <div class="review-card">
+        <blockquote>"Leah is the only person I trust with jewelry. She has an incredible eye, deep integrity, and she genuinely cares about getting it right for you."</blockquote>
+        <div class="attribution">— M.T., Repeat Client</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CALLOUT -->
+<section class="custom-cta" style="background:var(--ink);color:var(--cream);padding:var(--s-14) var(--gutter);text-align:center;">
+  <span class="eyebrow" style="color:var(--bronze);margin-bottom:var(--s-5);display:block;">Something made only for you</span>
+  <h2 class="h2" style="color:var(--cream);margin-bottom:var(--s-7);">Custom commissions are open.<br>Every collaboration begins with a <span class="italic">conversation.</span></h2>
+  <a href="{{ routes.contact_url }}" class="btn btn-frame" style="border-color:rgba(245,240,232,0.6);color:var(--cream);">Let's create together</a>
+</section>
+
+{% section 'newsletter' %}
+
+<style>
+  .about-split {
+    display: grid; grid-template-columns: 5fr 7fr; gap: var(--s-10);
+    max-width: var(--max-w); margin: 0 auto;
+    padding: var(--s-10) var(--gutter) var(--s-12); align-items: start;
+  }
+  .about-split-image img { width: 100%; height: auto; display: block; }
+  .about-split-text { padding-top: var(--s-2); }
+  .about-split-text p {
+    font-family: var(--sans); font-size: clamp(14px, 1vw, 16px);
+    line-height: 1.75; color: var(--ink-soft); margin-bottom: var(--s-5);
+  }
+  .about-split-text p strong { color: var(--ink); font-weight: 500; }
+  .about-split-text p.lift { color: var(--ink); font-style: italic; }
+  @media (max-width: 768px) { .about-split { grid-template-columns: 1fr; } }
+
+  .about-hero {
+    padding: calc(var(--header-h) + var(--s-9)) var(--gutter) var(--s-9);
+    background: var(--cream); text-align: center;
+  }
+  .about-hero-inner { max-width: 1000px; margin: 0 auto; }
+  .about-hero .eyebrow { display: block; margin-bottom: var(--s-5); }
+  .about-hero .h1 { font-weight: 300; max-width: 22ch; margin: 0 auto var(--s-7); }
+</style>

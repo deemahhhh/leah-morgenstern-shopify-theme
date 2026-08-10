@@ -1,0 +1,132 @@
+<style>
+  .custom-hero { padding: calc(var(--header-h) + 60px) var(--gutter) var(--s-8); text-align: center; max-width: 72ch; margin: 0 auto; }
+  .custom-hero .h1 { font-size: clamp(22px, 2.8vw, 40px); margin-bottom: var(--s-5); }
+  .custom-pieces { padding: var(--s-10) 0 var(--s-14); background: var(--cream); }
+  .custom-pieces .wrap { display: flex; flex-direction: column; gap: var(--s-14); }
+  .custom-piece { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-10); align-items: center; }
+  .custom-piece:nth-child(even) { direction: rtl; }
+  .custom-piece:nth-child(even) > * { direction: ltr; }
+  .custom-piece-media { position: relative; aspect-ratio: 4/5; overflow: hidden; background: var(--stone); }
+  .custom-piece-media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease; }
+  .custom-piece-media:hover img { transform: scale(1.04); }
+  .custom-piece-alt { position: absolute; bottom: var(--s-4); right: var(--s-4); width: 38%; aspect-ratio: 1; overflow: hidden; border: 3px solid var(--cream); box-shadow: 0 4px 24px rgba(0,0,0,0.15); }
+  .custom-piece-alt img { width: 100%; height: 100%; object-fit: cover; }
+  .custom-piece-text { padding: var(--s-4) 0; }
+  .custom-piece-text .eyebrow { display: block; margin-bottom: var(--s-4); }
+  .custom-piece-text .h2 { margin-bottom: var(--s-5); }
+  .custom-piece-tag { display: inline-block; font-family: var(--sans); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--bronze); border: 1px solid var(--bronze); padding: 4px 12px; margin-bottom: var(--s-5); }
+  .process-section { padding: var(--s-14) 0; }
+  .process-head { text-align: center; margin-bottom: var(--s-10); }
+  .process-head .h2 { margin-bottom: var(--s-4); }
+  .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s-6); }
+  .process-step { padding: var(--s-6) var(--s-5); border-top: 1px solid var(--sand); }
+  .process-step .num { font-family: var(--serif); font-size: 42px; color: var(--sand); line-height: 1; margin-bottom: var(--s-4); }
+  .process-step h4 { font-family: var(--serif); font-size: 20px; font-weight: 400; color: var(--ink); margin-bottom: var(--s-3); }
+  .process-step p { font-family: var(--sans); font-size: 14px; line-height: 1.7; color: var(--ink-muted); }
+  @media (max-width: 768px) { .custom-piece { grid-template-columns: 1fr; } .custom-piece:nth-child(even) { direction: ltr; } .process-steps { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 480px) { .process-steps { grid-template-columns: 1fr; } }
+</style>
+
+<!-- HERO -->
+<section class="custom-hero">
+  <span class="eyebrow">Made only for you</span>
+  <h1 class="h1">Custom and personalized creations<br>are at the heart of my <span class="italic">work.</span></h1>
+  <p class="lede">Each piece is a reflection of the soul and stories of the one who wears it — from the spark of a beautiful stone to the birth of something entirely new.</p>
+</section>
+
+<!-- PAST COMMISSIONS -->
+<section class="custom-pieces">
+  <div class="wrap">
+
+    <!-- Path Ring -->
+    <div class="custom-piece reveal">
+      <div class="custom-piece-media">
+        <img src="https://drive.google.com/thumbnail?id=1Pc_Cbrf2HuskxvRVK20VAJNOnNaDF-uQ&sz=w900" alt="Path Ring · Yellow Diamond">
+        <div class="custom-piece-alt">
+          <img src="https://drive.google.com/thumbnail?id=1iVNFn4BeHZGJFDUYzvd_b_6GHaaFIHwk&sz=w900" alt="Path Ring detail">
+        </div>
+      </div>
+      <div class="custom-piece-text">
+        <span class="custom-piece-tag">Custom Commission</span>
+        <span class="eyebrow">Fancy colored diamond</span>
+        <h2 class="h2">Path Ring ·<br><span class="italic">Yellow Diamond</span></h2>
+        <p style="font-family:var(--sans);font-size:13px;line-height:1.7;color:var(--ink-muted);margin-bottom:var(--s-4);">Whether it's a ring, a pair of studs, or a tennis bracelet, we'll work together to source the right diamonds for your piece — guided by the 4Cs (cut, color, clarity, carat) — to find what meets your requirements.</p>
+        <a href="{{ routes.contact_url }}?inquire=path-ring" class="btn btn-frame">Inquire about this piece</a>
+      </div>
+    </div>
+
+    <!-- Tanzanite Custom Earrings -->
+    <div class="custom-piece reveal">
+      <div class="custom-piece-media">
+        <img src="https://drive.google.com/thumbnail?id=1h6gBWJUr3jjWt9bMtrjixoH_9bF9P7Ku&sz=w900" alt="Tanzanite Custom Earrings">
+        <div class="custom-piece-alt">
+          <img src="https://drive.google.com/thumbnail?id=1lD_7Fc0yFQUbu87xpP5PzCCsMflcABxm&sz=w900" alt="Tanzanite earrings detail" style="transform:rotate(180deg)">
+        </div>
+      </div>
+      <div class="custom-piece-text">
+        <span class="custom-piece-tag">Custom Commission</span>
+        <span class="eyebrow">Tanzanite &amp; 14k gold</span>
+        <h2 class="h2">Tanzanite<br><span class="italic">Custom Earrings</span></h2>
+        <p style="font-family:var(--sans);font-size:13px;line-height:1.7;color:var(--ink-muted);margin-bottom:var(--s-4);">Whether it's a ring, a pair of studs, or a tennis bracelet, we'll work together to source the right diamonds for your piece — guided by the 4Cs (cut, color, clarity, carat) — to find what meets your requirements.</p>
+        <a href="{{ routes.contact_url }}?inquire=tanzanite-custom-earrings" class="btn btn-frame">Inquire about this piece</a>
+      </div>
+    </div>
+
+    <!-- Rainbow Gemstone Necklace -->
+    <div class="custom-piece reveal">
+      <div class="custom-piece-media">
+        <img src="{{ 'custom-3.jpeg' | asset_url }}" alt="Rainbow Gemstone Necklace">
+      </div>
+      <div class="custom-piece-text">
+        <span class="custom-piece-tag">Custom Commission</span>
+        <span class="eyebrow">Multi-stone &amp; 18k gold</span>
+        <h2 class="h2">Rainbow<br><span class="italic">Gemstone Necklace</span></h2>
+        <p style="font-family:var(--sans);font-size:13px;line-height:1.7;color:var(--ink-muted);margin-bottom:var(--s-4);">Whether it's a ring, a pair of studs, or a tennis bracelet, we'll work together to source the right diamonds for your piece — guided by the 4Cs (cut, color, clarity, carat) — to find what meets your requirements.</p>
+        <a href="{{ routes.contact_url }}?inquire=custom" class="btn btn-frame">Inquire about a custom piece</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- THE PROCESS -->
+<section class="process-section section-divider">
+  <div class="wrap">
+    <div class="process-head reveal">
+      <span class="eyebrow">How it works</span>
+      <h2 class="h2">The custom process, in four steps.</h2>
+      <p class="lede" style="max-width:52ch;margin:0 auto;">Every commission begins with a conversation and ends with something made only for you.</p>
+    </div>
+    <div class="process-steps reveal-stagger">
+      <div class="process-step">
+        <div class="num">01</div>
+        <h4>Sourcing</h4>
+        <p>Each jewel begins with the search for a stone — chosen for its beauty, energy, and timeless essence. With access to New York's Diamond District and a network of trusted gemologists, I source diamonds, fancy colored diamonds, and gemstones that reflect both your vision and the highest standards of authenticity.</p>
+      </div>
+      <div class="process-step">
+        <div class="num">02</div>
+        <h4>Sketch &amp; Design</h4>
+        <p>We begin with inspiration — mood boards, rough sketches, and conversation — shaping ideas into clear directions. I present thoughtful options and refine proportions, forms, and stones until everything feels just right.</p>
+      </div>
+      <div class="process-step">
+        <div class="num">03</div>
+        <h4>Creation</h4>
+        <p>Once the design is finalized, it moves into the hands of master jewelers. I collaborate with trusted 5th Avenue manufacturers who bring precision and artistry to every detail. Clients review and approve detailed CAD renderings before production begins.</p>
+      </div>
+      <div class="process-step">
+        <div class="num">04</div>
+        <h4>The Final Piece</h4>
+        <p>When your piece is complete, it's carefully polished, inspected, and prepared for its journey. Whether we meet in person or I ship securely to you anywhere in the world, every detail is handled with care.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="background:var(--ink);color:var(--cream);padding:var(--s-14) var(--gutter);text-align:center;">
+  <span class="eyebrow" style="color:var(--bronze);margin-bottom:var(--s-5);display:block;">Something made only for you</span>
+  <h2 class="h2" style="color:var(--cream);margin-bottom:var(--s-7);">Custom commissions are open.<br>Every collaboration begins with a <span class="italic">conversation.</span></h2>
+  <a href="{{ routes.contact_url }}" class="btn btn-frame" style="border-color:rgba(245,240,232,0.6);color:var(--cream);">Let's create together</a>
+</section>
+
+{% section 'newsletter' %}

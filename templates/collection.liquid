@@ -1,0 +1,107 @@
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner reveal">
+    <span class="eyebrow">The Collection</span>
+    <h1 class="h1">Quiet objects,<br>made to be <span class="italic">lived in.</span></h1>
+    <p class="lede">Each piece is set in gold and platinum, with diamonds and gemstones chosen for their beauty and their energy.</p>
+  </div>
+</section>
+
+<!-- FILTERS -->
+<div class="wrap">
+  <div class="filters reveal" role="tablist">
+    <button class="filter-tab active" data-filter="all" role="tab" aria-selected="true">All</button>
+    <button class="filter-tab" data-filter="Necklaces" role="tab">Necklaces</button>
+    <button class="filter-tab" data-filter="Bracelets" role="tab">Bracelets</button>
+    <button class="filter-tab" data-filter="Earrings" role="tab">Earrings</button>
+    <button class="filter-tab" data-filter="Rings" role="tab">Rings</button>
+    <button class="filter-tab" data-filter="Custom" role="tab">Custom</button>
+  </div>
+  <div class="shop-results-count" id="results-count"></div>
+</div>
+
+<!-- PRODUCT GRID -->
+<section class="section" style="padding-top:0;">
+  <div class="wrap">
+    <div class="product-grid" id="shop-grid">
+      {% for product in collection.products %}
+        <div class="product-grid-item" data-type="{{ product.type }}">
+          {% render 'product-card', product: product %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- CUSTOM CALLOUT -->
+<section class="shop-custom-callout">
+  <div class="shop-custom-images">
+    <div class="shop-custom-img"><img src="https://drive.google.com/thumbnail?id=1Uj35QvJ9VJDurgSJWAxSDrUWaC2RMnkV&sz=w900" alt="Path Ring"></div>
+    <div class="shop-custom-img"><img src="https://drive.google.com/thumbnail?id=1lD_7Fc0yFQUbu87xpP5PzCCsMflcABxm&sz=w900" alt="Tanzanite Custom Earrings"></div>
+  </div>
+  <div class="shop-custom-text reveal">
+    <span class="eyebrow">Don't see it?</span>
+    <h2 class="h2" style="max-width:18ch;font-weight:300;margin-bottom:var(--s-5);">Custom commissions are open.<br>Every collaboration begins with a <span class="italic">conversation.</span></h2>
+    <a href="{{ pages['custom'].url }}" class="btn btn-frame">Begin a conversation</a>
+  </div>
+</section>
+
+{% section 'newsletter' %}
+
+<style>
+  .product-grid-item { display: contents; }
+  .product-grid-item.hidden { display: none; }
+  .shop-custom-callout { display: grid; grid-template-columns: 1fr 1fr; min-height: 420px; background: var(--ink); }
+  .shop-custom-images { display: grid; grid-template-columns: 1fr 1fr; }
+  .shop-custom-img { overflow: hidden; }
+  .shop-custom-img img { width: 100%; height: 100%; object-fit: contain; display: block; transition: transform 0.5s ease; background: #f5f2ee; }
+  .shop-custom-img:hover img { transform: scale(1.04); }
+  .shop-custom-text { display: flex; flex-direction: column; justify-content: center; padding: var(--s-8); color: var(--cream); }
+  .shop-custom-text .eyebrow { color: var(--bronze); margin-bottom: var(--s-4); display: block; }
+  .shop-custom-text .h2 { color: var(--cream); }
+  .shop-custom-text .btn-frame { align-self: flex-start; border-color: rgba(245,240,232,0.6); color: var(--cream); }
+  .shop-custom-text .btn-frame:hover { background: var(--cream); color: var(--ink); }
+  @media (max-width: 768px) {
+    .shop-custom-callout { grid-template-columns: 1fr; }
+    .shop-custom-images { height: 280px; }
+  }
+</style>
+
+<script>
+  (function(){
+    const tabs = document.querySelectorAll('.filter-tab');
+    const items = document.querySelectorAll('.product-grid-item');
+    const countEl = document.getElementById('results-count');
+
+    // Read ?cat= from URL on load
+    const params = new URLSearchParams(window.location.search);
+    const initial = params.get('cat') || 'all';
+
+    function render(filter) {
+      let count = 0;
+      items.forEach(item => {
+        const type = (item.dataset.type || '').toLowerCase();
+        const match = filter === 'all' || type === filter.toLowerCase();
+        item.style.display = match ? 'contents' : 'none';
+        if (match) count++;
+      });
+      countEl.textContent = count + (count === 1 ? ' piece' : ' pieces');
+    }
+
+    tabs.forEach(t => {
+      if (t.dataset.filter.toLowerCase() === initial.toLowerCase()) {
+        tabs.forEach(x => x.classList.remove('active'));
+        t.classList.add('active');
+      }
+      t.addEventListener('click', () => {
+        tabs.forEach(x => x.classList.remove('active'));
+        t.classList.add('active');
+        render(t.dataset.filter);
+        const param = t.dataset.filter === 'all' ? '' : '?cat=' + t.dataset.filter;
+        history.replaceState(null, '', window.location.pathname + param);
+      });
+    });
+
+    render(initial);
+  })();
+</script>
