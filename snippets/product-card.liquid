@@ -1,0 +1,56 @@
+{% comment %}
+  Usage: {% render 'product-card', product: product %}
+  Product tags used:
+    inquire-only  → show Inquire tag + price
+    sold-out      → show Sold Out tag + price
+    rotate-180    → rotate main image 180deg
+    price-from    → show "From $X"
+    made-in-italy → show "Made in Italy" on PDP
+    made-in-nyc   → show "Made in New York City" on PDP
+{% endcomment %}
+
+{% assign is_inquire = false %}
+{% assign is_soldout = false %}
+{% assign rotate180 = false %}
+{% assign price_from = false %}
+
+{% for tag in product.tags %}
+  {% if tag == 'inquire-only' %}{% assign is_inquire = true %}{% endif %}
+  {% if tag == 'sold-out' %}{% assign is_soldout = true %}{% endif %}
+  {% if tag == 'rotate-180' %}{% assign rotate180 = true %}{% endif %}
+  {% if tag == 'price-from' %}{% assign price_from = true %}{% endif %}
+{% endfor %}
+
+{% if is_inquire %}
+  {% assign tag_label = 'Inquire' %}
+  {% assign price_label = 'Inquire' %}
+{% elsif is_soldout %}
+  {% assign tag_label = 'Sold Out' %}
+  {% assign price_label = 'Sold Out' %}
+{% else %}
+  {% assign tag_label = '' %}
+  {% if price_from %}
+    {% assign price_label = 'From ' | append: product.price | money %}
+  {% else %}
+    {% assign price_label = product.price | money %}
+  {% endif %}
+{% endif %}
+
+<a href="{{ product.url }}" class="product-card">
+  <div class="product-photo" {% unless rotate180 %}style="background-image: url('{{ product.featured_image | image_url: width: 900 }}');"{% endunless %}>
+    {% if rotate180 %}
+      <img src="{{ product.featured_image | image_url: width: 900 }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:rotate(180deg)" alt="{{ product.title }}">
+    {% else %}
+      {% if product.images[1] %}
+        <div class="product-photo-alt" style="background-image: url('{{ product.images[1] | image_url: width: 900 }}');"></div>
+      {% endif %}
+    {% endif %}
+    {% if tag_label != '' %}
+      <span class="product-tag">{{ tag_label }}</span>
+    {% endif %}
+  </div>
+  <div class="product-info">
+    <span class="name">{{ product.title }}</span>
+    <span class="price">{{ price_label }}</span>
+  </div>
+</a>
