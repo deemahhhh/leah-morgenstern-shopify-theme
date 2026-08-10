@@ -1,0 +1,48 @@
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col footer-brand">
+        <span class="logo">Leah Morgenstern</span>
+        <p>Fine jewelry with diamonds, fancy colored diamonds, and gemstones, set in gold and platinum.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Shop</h5>
+        <ul>
+          <li><a href="{{ routes.collections_url }}/necklaces">Necklaces</a></li>
+          <li><a href="{{ routes.collections_url }}/bracelets">Bracelets</a></li>
+          <li><a href="{{ routes.collections_url }}/earrings">Earrings</a></li>
+          <li><a href="{{ routes.collections_url }}/all">All pieces</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Studio</h5>
+        <ul>
+          <li><a href="{{ pages['about'].url }}">About Leah</a></li>
+          <li><a href="{{ pages['custom'].url }}">Custom</a></li>
+          <li><a href="{{ routes.contact_url }}">Contact</a></li>
+          <li><a href="https://www.instagram.com/lm.finejewelry/" target="_blank" rel="noopener">Instagram</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Care</h5>
+        <ul>
+          <li><a href="{{ routes.contact_url }}">Sizing</a></li>
+          <li><a href="{{ routes.contact_url }}">Care &amp; cleaning</a></li>
+          <li><a href="{{ routes.contact_url }}">Shipping &amp; returns</a></li>
+          <li><a href="{{ routes.contact_url }}">FAQ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; {{ 'now' | date: '%Y' }} Leah Morgenstern Fine Jewelry. All rights reserved.</span>
+      <span class="credit">Photography courtesy of <a href="http://www.poglia.co/" target="_blank" rel="noopener">Poglia</a></span>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,29 @@
+<section class="newsletter">
+  <div class="newsletter-inner reveal">
+    <h3 class="h3">Stay close to the studio.</h3>
+    <p class="body">New pieces, custom openings, and the occasional note from Leah.</p>
+    {% form 'customer', id: 'newsletter-form' %}
+      {{ form.errors | default_errors }}
+      {% if form.posted_successfully? %}
+        <p style="font-family:var(--sans);font-size:13px;color:var(--bronze);letter-spacing:0.1em;">Thank you — you're on the list.</p>
+      {% else %}
+        <div style="display:flex;gap:0;border-bottom:1px solid var(--ink);">
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          <input type="email" name="contact[email]" placeholder="Your email" required
+            style="flex:1;background:transparent;border:0;padding:var(--s-4) 0;font-size:15px;outline:none;">
+          <button type="submit"
+            style="padding:var(--s-4) var(--s-5);font-size:11px;text-transform:uppercase;letter-spacing:0.22em;color:var(--ink);font-weight:500;background:none;border:0;cursor:pointer;">
+            Subscribe →
+          </button>
+        </div>
+      {% endif %}
+    {% endform %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Newsletter",
+  "settings": []
+}
+{% endschema %}

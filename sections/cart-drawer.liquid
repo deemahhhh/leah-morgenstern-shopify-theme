@@ -1,0 +1,38 @@
+<div class="drawer-backdrop"></div>
+<aside class="cart-drawer" aria-label="Cart">
+  <div class="cart-head">
+    <h4 class="h4">Your selection</h4>
+    <button class="cart-close">Close</button>
+  </div>
+  <div class="cart-items">
+    {% if cart.item_count == 0 %}
+      <div class="cart-empty">Your cart is quiet.<br><br><a class="btn-link" href="{{ routes.collections_url }}/all">Explore the collection</a></div>
+    {% else %}
+      {% for item in cart.items %}
+        <div class="cart-item">
+          <img src="{{ item.image | image_url: width: 160 }}" alt="{{ item.title }}">
+          <div>
+            <div class="name">{{ item.title }}</div>
+            <div class="price">{{ item.price | money }} · qty {{ item.quantity }}</div>
+            <a href="#" class="remove" data-remove="{{ item.key }}">Remove</a>
+          </div>
+          <div class="price">{{ item.line_price | money }}</div>
+        </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+  <div class="cart-foot">
+    <div class="cart-total">
+      <span class="label">Subtotal</span>
+      <span class="amount">{{ cart.total_price | money }}</span>
+    </div>
+    <a href="{{ routes.checkout_url }}" class="btn btn-frame cart-checkout">Checkout</a>
+  </div>
+</aside>
+
+{% schema %}
+{
+  "name": "Cart Drawer",
+  "settings": []
+}
+{% endschema %}

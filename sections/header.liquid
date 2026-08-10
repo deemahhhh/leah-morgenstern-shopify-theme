@@ -1,0 +1,31 @@
+<header class="site-header">
+  <div class="header-inner">
+    <button class="menu-toggle" aria-label="Open menu">
+      <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 1H20M0 7H20M0 13H14" stroke="currentColor" stroke-width="1.2"/>
+      </svg>
+    </button>
+    <nav class="nav left" aria-label="Primary">
+      <a href="{{ routes.collections_url }}/all" {% if request.path contains '/collections' %}class="active"{% endif %}>Shop</a>
+      <a href="{{ pages['about'].url }}" {% if request.path contains 'about' %}class="active"{% endif %}>About</a>
+      <a href="{{ pages['custom'].url }}" {% if request.path contains 'custom' %}class="active"{% endif %}>Custom</a>
+    </nav>
+    <a href="{{ routes.root_url }}" class="logo" aria-label="Leah Morgenstern · Fine Jewelry">
+      <img src="{{ 'logo.png' | asset_url }}" alt="Leah Morgenstern · Fine Jewelry">
+    </a>
+    <nav class="nav right" aria-label="Secondary">
+      <a href="{{ routes.contact_url }}">Contact</a>
+      <button class="cart-btn" aria-label="Open cart">
+        <span class="label-text">Cart</span>
+        <span class="cart-count" {% if cart.item_count == 0 %}style="display:none;"{% endif %}>{{ cart.item_count }}</span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": []
+}
+{% endschema %}
