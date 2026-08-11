@@ -13,15 +13,6 @@
   {% if tag == 'made-in-nyc' %}{% assign made_in = 'New York City' %}{% endif %}
 {% endfor %}
 
-{% if is_soldout %}
-  {% assign cta_html = '<button class="btn btn-frame" disabled style="opacity:0.5;cursor:default;">Sold Out</button>' %}
-{% elsif is_inquire %}
-  {% assign cta_html = '<a href="/pages/contact?inquire=' | append: product.handle | append: '" class="btn btn-frame">Inquire about this piece</a>' %}
-{% else %}
-  {% assign variant = product.selected_or_first_available_variant %}
-  {% assign cta_html = '<button class="btn btn-frame" data-add-to-cart="' | append: variant.id | append: '">Add to cart — ' | append: product.price | money | append: '</button>' %}
-{% endif %}
-
 <main class="pdp">
   <div class="wrap">
     <div class="pdp-grid">
@@ -39,7 +30,7 @@
       <!-- INFO -->
       <aside class="pdp-info">
         <div class="breadcrumb">
-          <a href="{{ routes.collections_url }}/all">Shop</a> ·
+          <a href="{{ routes.collections_url }}/all">Shop</a> &middot;
           <a href="{{ routes.collections_url }}/{{ product.type | handleize }}">{{ product.type }}</a>
         </div>
         <h1 class="name">{{ product.title }}</h1>
