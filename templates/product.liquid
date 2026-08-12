@@ -88,8 +88,7 @@
     <h3 class="h3">You might also like</h3>
     <div class="product-grid">
       {% assign related_count = 0 %}
-      
-     {% assign product_type_handle = product.type | handleize %}
+               {% assign product_type_handle = product.type | handleize %}
       {% for p in collections[product_type_handle].products %}
         {% if p.handle != product.handle and related_count < 3 %}
           {% render 'product-card', product: p %}
