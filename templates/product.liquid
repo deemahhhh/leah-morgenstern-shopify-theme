@@ -88,13 +88,20 @@
     <h3 class="h3">You might also like</h3>
     <div class="product-grid">
       {% assign related_count = 0 %}
-               {% assign product_type_handle = product.type | handleize %}
-      {% for p in collections[product_type_handle].products %}
-        {% if p.handle != product.handle and related_count < 3 %}
+      {% for p in collections.all.products %}
+        {% if p.handle != product.handle and p.type == product.type and related_count < 3 %}
           {% render 'product-card', product: p %}
           {% assign related_count = related_count | plus: 1 %}
         {% endif %}
       {% endfor %}
+      {% if related_count == 0 %}
+        {% for p in collections.all.products %}
+          {% if p.handle != product.handle and related_count < 3 %}
+            {% render 'product-card', product: p %}
+            {% assign related_count = related_count | plus: 1 %}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
     </div>
   </div>
 </section>
