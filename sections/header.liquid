@@ -11,7 +11,7 @@
       <a href="{{ pages['custom'].url }}" {% if request.path contains 'custom' %}class="active"{% endif %}>Custom</a>
     </nav>
     <a href="{{ routes.root_url }}" class="logo" aria-label="Leah Morgenstern · Fine Jewelry">
-      <img src="{{ 'logo.png' | asset_url }}" alt="Leah Morgenstern · Fine Jewelry">
+      <img src="{{ shop.brand.logo | image_url: width: 400 }}" alt="Leah Morgenstern · Fine Jewelry">
     </a>
     <nav class="nav right" aria-label="Secondary">
       <a href="{{ routes.contact_url }}">Contact</a>
