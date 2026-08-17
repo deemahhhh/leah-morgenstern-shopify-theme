@@ -68,9 +68,22 @@
             <button class="btn btn-frame" disabled style="opacity:0.5;cursor:default;">Sold Out</button>
           {% else %}
             {% form 'product', product %}
-              <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-              <button type="submit" class="btn btn-frame" data-add-to-cart="{{ product.selected_or_first_available_variant.id }}">
-                Add to cart — {{ product.price | money }}
+              {% if product.variants.size > 1 %}
+                <div class="variant-select-wrap" style="margin-bottom:var(--s-4);">
+                  <label style="font-family:var(--sans);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;display:block;margin-bottom:8px;">Size</label>
+                  <select name="id" id="variant-select" style="font-family:var(--sans);font-size:13px;border:1px solid var(--sand);padding:10px 14px;width:100%;background:transparent;cursor:pointer;">
+                    {% for variant in product.variants %}
+                      <option value="{{ variant.id }}" {% if variant == product.selected_or_first_available_variant %}selected{% endif %}>
+                        {{ variant.title }} — {{ variant.price | money }}
+                      </option>
+                    {% endfor %}
+                  </select>
+                </div>
+              {% else %}
+                <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+              {% endif %}
+              <button type="submit" class="btn btn-frame">
+                Add to cart — {{ product.selected_or_first_available_variant.price | money }}
               </button>
             {% endform %}
             <p style="font-family:var(--sans);font-size:12px;color:var(--ink-muted);margin-top:var(--s-3);text-align:center;">Ships in 5–7 business days
