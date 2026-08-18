@@ -62,7 +62,7 @@
 
         <div class="pdp-actions">
   {% if is_inquire %}
-    <p style="font-family:var(--sans);font-size:13px;line-height:1.7;color:var(--ink-muted);margin-bottom:var(--s-4);">Whether it’s a ring, a pair of studs, or a tennis bracelet, we’ll work together to source the right diamonds for your piece — guided by the 4Cs (cut, color, clarity, carat) — to find what meets your requirements.</p>
+    <p style="font-family:var(--sans);font-size:13px;line-height:1.7;color:var(--ink-muted);margin-bottom:var(--s-4);">Whether it's a ring, a pair of studs, or a tennis bracelet, we'll work together to source the right diamonds for your piece — guided by the 4Cs (cut, color, clarity, carat) — to find what meets your requirements.</p>
     <a href="/pages/contact?inquire={{ product.handle }}" class="btn btn-frame">Inquire about this piece</a>
   {% elsif is_soldout %}
     <button class="btn btn-frame" disabled style="opacity:0.5;cursor:default;">Sold Out</button>
@@ -72,7 +72,8 @@
         <label style="font-family:var(--sans);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;display:block;margin-bottom:8px;">Size</label>
         <select id="variant-select" style="font-family:var(--sans);font-size:13px;border:1px solid var(--sand);padding:10px 14px;width:100%;background:transparent;cursor:pointer;">
           {% for variant in product.variants %}
-            <option value="{{ variant.id }}" {% if variant == product.selected_or_first_available_variant %}selected{% endif %}>
+            <option value="{{ variant.id }}" data-price="{{ variant.price | money }}"
+              {% if variant == product.selected_or_first_available_variant %}selected{% endif %}>
               {{ variant.title }} — {{ variant.price | money }}
             </option>
           {% endfor %}
@@ -89,7 +90,9 @@
         var btn = document.getElementById('add-to-cart-btn');
         if (sel && btn) {
           sel.addEventListener('change', function() {
+            var opt = sel.options[sel.selectedIndex];
             btn.setAttribute('data-add-to-cart', sel.value);
+            btn.textContent = 'Add to cart — ' + opt.getAttribute('data-price');
           });
         }
       })();
