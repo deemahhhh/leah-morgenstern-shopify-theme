@@ -14,7 +14,7 @@
       <img src="{{ shop.brand.logo | image_url: width: 400 }}" alt="Leah Morgenstern · Fine Jewelry">
     </a>
     <nav class="nav right" aria-label="Secondary">
-      <a href="{{ routes.contact_url }}">Contact</a>
+      <a href="/pages/contact">Contact</a>
       <button class="cart-btn" aria-label="Open cart">
         <span class="label-text">Cart</span>
         <span class="cart-count" {% if cart.item_count == 0 %}style="display:none;"{% endif %}>{{ cart.item_count }}</span>
