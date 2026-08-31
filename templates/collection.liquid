@@ -10,32 +10,36 @@
 <!-- FILTERS -->
 <div class="collection-filters">
   <div class="wrap">
-    <nav class="filter-nav">
-      <a href="/collections/all" class="filter-tab{% if collection.handle == 'all' %} is-active{% endif %}">All</a>
-      <a href="/collections/necklaces" class="filter-tab{% if collection.handle == 'necklaces' %} is-active{% endif %}">Necklaces</a>
-      <a href="/collections/bracelets" class="filter-tab{% if collection.handle == 'bracelets' %} is-active{% endif %}">Bracelets</a>
-      <a href="/collections/earrings" class="filter-tab{% if collection.handle == 'earrings' %} is-active{% endif %}">Earrings</a>
-      <a href="/collections/rings" class="filter-tab{% if collection.handle == 'rings' %} is-active{% endif %}">Rings</a>
-      <a href="/collections/custom" class="filter-tab{% if collection.handle == 'custom' %} is-active{% endif %}">Custom</a>
-    </nav>
+    <div class="filters reveal" role="tablist">
+      <button class="filter-tab active" data-filter="all" role="tab" aria-selected="true">All</button>
+      <button class="filter-tab" data-filter="Necklaces" role="tab">Necklaces</button>
+      <button class="filter-tab" data-filter="Bracelets" role="tab">Bracelets</button>
+      <button class="filter-tab" data-filter="Earrings" role="tab">Earrings</button>
+      <button class="filter-tab" data-filter="Rings" role="tab">Rings</button>
+      <button class="filter-tab" data-filter="Custom" role="tab">Custom</button>
+    </div>
+    <div class="shop-results-count" id="results-count"></div>
   </div>
 </div>
 
-<!-- PRODUCTS -->
-<section class="collection-products">
+<!-- PRODUCT GRID -->
+<section class="section" style="padding-top:0;">
   <div class="wrap">
-    <p class="collection-count eyebrow">{{ collection.products_count }} pieces</p>
-    <div class="product-grid">
+    <div class="product-grid" id="shop-grid">
       {% assign priority_handles = "classic-diamond-studs,tennis-necklace,tennis-bracelet,path-ring,tanzanite-custom-earrings" | split: "," %}
       {% for handle in priority_handles %}
         {% assign featured = collection.products | where: "handle", handle | first %}
         {% if featured %}
-          {% render 'product-card', product: featured %}
+          <div class="product-grid-item" data-type="{{ featured.type }}">
+            {% render 'product-card', product: featured %}
+          </div>
         {% endif %}
       {% endfor %}
       {% for product in collection.products %}
         {% unless priority_handles contains product.handle %}
-          {% render 'product-card', product: product %}
+          <div class="product-grid-item" data-type="{{ product.type }}">
+            {% render 'product-card', product: product %}
+          </div>
         {% endunless %}
       {% endfor %}
     </div>
