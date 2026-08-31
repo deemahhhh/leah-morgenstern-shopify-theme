@@ -46,6 +46,32 @@
   </div>
 </section>
 
+
+<script>
+(function() {
+  var tabs = document.querySelectorAll('.filter-tab');
+  var items = document.querySelectorAll('.product-grid-item');
+
+  tabs.forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      var filter = tab.getAttribute('data-filter');
+
+      // Update active tab
+      tabs.forEach(function(t) { t.classList.remove('active'); });
+      tab.classList.add('active');
+
+      // Show/hide products
+      items.forEach(function(item) {
+        if (filter === 'all') {
+          item.style.display = '';
+        } else {
+          item.style.display = (item.getAttribute('data-type') === filter) ? '' : 'none';
+        }
+      });
+    });
+  });
+})();
+</script>
 <!-- DON'T SEE IT? -->
 <section class="collection-cta">
   <div class="wrap">
