@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (filter === 'all') {
           item.style.display = '';
         } else {
-          item.style.display = (item.getAttribute('data-type') === filter) ? '' : 'none';
+          item.style.display = (item.getAttribute('data-type') || '').toLowerCase() === filter.toLowerCase() ? '' : 'none';
         }
       });
     });
