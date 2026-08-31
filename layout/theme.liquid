@@ -35,26 +35,7 @@
   {{ 'main.js' | asset_url | script_tag }}
 
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  var tabs = document.querySelectorAll('.filter-tab');
-  var items = document.querySelectorAll('.product-grid-item');
-  if (!tabs.length || !items.length) return;
-  tabs.forEach(function(tab) {
-    tab.addEventListener('click', function() {
-      var filter = tab.getAttribute('data-filter');
-      tabs.forEach(function(t) { t.classList.remove('active'); });
-      tab.classList.add('active');
-      items.forEach(function(item) {
-        if (filter === 'all') {
-          item.style.display = '';
-        } else {
-          item.style.display = (item.getAttribute('data-type') || '').toLowerCase() === filter.toLowerCase() ? '' : 'none';
-        }
-      });
-    });
-  });
-});
-</script>
+{{ 'filter-tabs.js' | asset_url | script_tag }}
+
 </body>
 </html>
