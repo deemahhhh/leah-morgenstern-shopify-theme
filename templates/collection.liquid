@@ -1,0 +1,54 @@
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner reveal">
+    <span class="eyebrow">The Collection</span>
+    <h1 class="h1">Quiet objects,<br>made to be <span class="italic">lived in.</span></h1>
+    <p class="lede">Each piece is set in gold and platinum, with diamonds and gemstones chosen for their beauty and their energy.</p>
+  </div>
+</section>
+
+<!-- FILTERS -->
+<div class="collection-filters">
+  <div class="wrap">
+    <nav class="filter-nav">
+      <a href="/collections/all" class="filter-tab{% if collection.handle == 'all' %} is-active{% endif %}">All</a>
+      <a href="/collections/necklaces" class="filter-tab{% if collection.handle == 'necklaces' %} is-active{% endif %}">Necklaces</a>
+      <a href="/collections/bracelets" class="filter-tab{% if collection.handle == 'bracelets' %} is-active{% endif %}">Bracelets</a>
+      <a href="/collections/earrings" class="filter-tab{% if collection.handle == 'earrings' %} is-active{% endif %}">Earrings</a>
+      <a href="/collections/rings" class="filter-tab{% if collection.handle == 'rings' %} is-active{% endif %}">Rings</a>
+      <a href="/collections/custom" class="filter-tab{% if collection.handle == 'custom' %} is-active{% endif %}">Custom</a>
+    </nav>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<section class="collection-products">
+  <div class="wrap">
+    <p class="collection-count eyebrow">{{ collection.products_count }} pieces</p>
+    <div class="product-grid">
+      {% assign priority_handles = "diamond-studs,tennis-necklace,tennis-bracelet,path-ring-yellow-diamond,tanzanite-custom-earrings" | split: "," %}
+      {% for handle in priority_handles %}
+        {% assign featured = collection.products | where: "handle", handle | first %}
+        {% if featured %}
+          {% render 'product-card', product: featured %}
+        {% endif %}
+      {% endfor %}
+      {% for product in collection.products %}
+        {% unless priority_handles contains product.handle %}
+          {% render 'product-card', product: product %}
+        {% endunless %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- DON'T SEE IT? -->
+<section class="collection-cta">
+  <div class="wrap">
+    <div class="collection-cta-inner reveal">
+      <h2 class="h2">Don't see it?</h2>
+      <p class="lede">We do custom work. Tell us what you're envisioning.</p>
+      <a href="/pages/contact" class="btn">Get in touch</a>
+    </div>
+  </div>
+</section>
