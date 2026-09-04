@@ -1,23 +1,33 @@
+<style>
+  .newsletter .fd-embed { width: 100%; }
+  .newsletter .ff-6a9b35ec88ab964c44a913cc { background: transparent !important; }
+  .newsletter .ff-6a9b35ec88ab964c44a913cc__container { background: transparent !important; padding: 0 !important; }
+  .newsletter .ff-6a9b35ec88ab964c44a913cc__title,
+  .newsletter .ff-6a9b35ec88ab964c44a913cc__subtitle { display: none !important; }
+  .newsletter .ff-6a9b35ec88ab964c44a913cc__form { background: transparent !important; padding: 0 !important; margin: 0 !important; max-width: none !important; width: 100% !important; }
+  .newsletter .ff-6a9b35ec88ab964c44a913cc__content { display: flex !important; flex-wrap: nowrap !important; align-items: center !important; gap: 0 !important; padding: 0 !important; margin: 0 !important; width: 100% !important; border-bottom: 1px solid var(--ink); }
+  .newsletter .ff-6a9b35ec88ab964c44a913cc__fields { flex: 1 1 0 !important; min-width: 0 !important; display: block !important; width: auto !important; margin: 0 !important; padding: 0 !important; }
+  .newsletter .ff-6a9b35ec88ab964c44a913cc__field { width: 100% !important; max-width: none !important; margin: 0 !important; padding: 0 !important; }
+  .newsletter .ff-6a9b35ec88ab964c44a913cc__control { width: 100% !important; background: transparent !important; border: 0 !important; border-radius: 0 !important; box-shadow: none !important; outline: none !important; padding: var(--s-4) 0 !important; font-family: var(--sans) !important; font-size: 15px !important; color: var(--ink) !important; height: auto !important; }
+  .newsletter .ff-6a9b35ec88ab964c44a913cc__label { font-family: var(--sans) !important; font-size: 15px !important; color: var(--ink-muted) !important; left: 0 !important; top: 50% !important; transform: translateY(-50%) !important; padding: 0 !important; margin: 0 !important; }
+  .newsletter .ff-6a9b35ec88ab964c44a913cc__footer { flex: 0 0 auto !important; width: auto !important; margin: 0 !important; padding: 0 !important; }
+  .newsletter .ff-6a9b35ec88ab964c44a913cc__button { background: none !important; color: var(--ink) !important; border: 0 !important; border-radius: 0 !important; padding: var(--s-4) var(--s-5) !important; font-family: var(--sans) !important; font-size: 11px !important; font-weight: 500 !important; text-transform: uppercase !important; letter-spacing: 0.22em !important; width: auto !important; min-width: 0 !important; height: auto !important; white-space: nowrap !important; cursor: pointer; }
+  .newsletter .ff-6a9b35ec88ab964c44a913cc__button span:after { content: " \2192"; }
+</style>
+
 <section class="newsletter">
   <div class="newsletter-inner reveal">
     <h3 class="h3">Stay close to the studio.</h3>
     <p class="body">New pieces, custom openings, and the occasional note from Leah.</p>
-    {% form 'customer', id: 'newsletter-form' %}
-      {{ form.errors | default_errors }}
-      {% if form.posted_successfully? %}
-        <p style="font-family:var(--sans);font-size:13px;color:var(--bronze);letter-spacing:0.1em;">Thank you — you're on the list.</p>
-      {% else %}
-        <div style="display:flex;gap:0;border-bottom:1px solid var(--ink);">
-          <input type="hidden" name="contact[tags]" value="newsletter">
-          <input type="email" name="contact[email]" placeholder="Your email" required
-            style="flex:1;background:transparent;border:0;padding:var(--s-4) 0;font-size:15px;outline:none;">
-          <button type="submit"
-            style="padding:var(--s-4) var(--s-5);font-size:11px;text-transform:uppercase;letter-spacing:0.22em;color:var(--ink);font-weight:500;background:none;border:0;cursor:pointer;">
-            Subscribe →
-          </button>
-        </div>
-      {% endif %}
-    {% endform %}
+
+    <!-- Flodesk inline form -->
+    <div class="fd-embed" id="fd-form-6a9b35ec88ab964c44a913cc"></div>
+    <script>
+      window.fd('form', {
+        formId: '6a9b35ec88ab964c44a913cc',
+        containerEl: '#fd-form-6a9b35ec88ab964c44a913cc'
+      });
+    </script>
   </div>
 </section>
 
