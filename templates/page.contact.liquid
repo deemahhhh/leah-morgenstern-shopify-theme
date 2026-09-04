@@ -65,3 +65,27 @@
 </section>
 
 {% section 'newsletter' %}
+
+{%- comment -%} Prefill the subject when arriving from an "Inquire" button {%- endcomment -%}
+<script>
+  (function () {
+    var PIECES = {
+      'path-ring': 'Path Ring, Yellow Diamond',
+      'tanzanite-custom-earrings': 'Tanzanite Custom Earrings',
+      'custom': 'A custom commission'
+    };
+    function prefill() {
+      var piece = new URLSearchParams(window.location.search).get('inquire');
+      if (!piece) return;
+      var field = document.querySelector('#contact-subject, [name="contact[subject]"]');
+      if (field && !field.value) {
+        field.value = 'Inquiry: ' + (PIECES[piece] || piece);
+      }
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', prefill);
+    } else {
+      prefill();
+    }
+  })();
+</script>
